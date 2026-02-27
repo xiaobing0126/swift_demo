@@ -11,7 +11,9 @@ import SwiftUI
 struct swift_demoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                LoginRegisterView()
+            }
         }
     }
 }
