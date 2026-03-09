@@ -7,37 +7,6 @@
 
 import SwiftUI
 
-class NamedShape {
-    var numberOfSides: Int = 0
-    var name: String
-
-    init(name: String) {
-        self.name = name
-    }
-
-    func simpleDescription() -> String {
-        return "A shape with \(numberOfSides) sides."
-    }
-}
-
-class Square: NamedShape {
-    var sideLength: Double
-
-    init(sideLength: Double, name: String) {
-        self.sideLength = sideLength
-        super.init(name: name)
-        numberOfSides = 4
-    }
-
-    func area() ->  Double {
-        return sideLength * sideLength
-    }
-
-    override func simpleDescription() -> String {
-        return "A square with sides of length \(sideLength)."
-    }
-}
-
 struct SettingView: View {
     // 示例数据
     @State private var items = [
@@ -48,16 +17,51 @@ struct SettingView: View {
         "帮助中心"
     ]
     
+    // swift 练习 —— 用结构体携带 id
+    struct PracticeItem: Identifiable, Hashable {
+        let id: Int
+        let name: String
+    }
+    
+    @State private var lists: [PracticeItem] = [
+        PracticeItem(id: 1, name: "swift初见"),
+        PracticeItem(id: 2, name: "swift基础部分")
+    ]
+    
+    // ✅ 用 @State 控制跳转目标（存储选中的 item）
+    @State private var selectedItem: PracticeItem?
+    
     var body: some View {
-        Button {
-            let test = Square(sideLength: 5.2, name: "my test square")
-            let area = test.area()
-            print(area)
-            let text = test.simpleDescription()
-            print(text)
-        } label: {
-            Text("test")
+        
+        List {
+            Section("练习菜单") {
+                ForEach(lists) { item in
+                    // ✅ 用 Button，在 action 里执行逻辑后触发跳转
+                    Button {
+                        // 这里可以写任意逻辑：打印日志、条件判断、数据处理等
+                        print("点击了 \(item.name), id = \(item.id)")
+                        selectedItem = item  // 所有都跳转，只是演示可以加条件
+                    } label: {
+                        HStack {
+                            Text(item.name)
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
         }
+        // ✅ 监听 selectedItem 变化，自动跳转到对应页面
+        .navigationDestination(item: $selectedItem) { item in
+            if item.id == 1 {
+                SwiftPracticeView(id: item.id, title: item.name)
+            } else if item.id == 2 {
+                SwiftBaseView(id: item.id, title: item.name)
+            }
+        }
+        
         List {
             // 用户信息区域
             Section {
