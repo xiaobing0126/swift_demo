@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3914D750-6B36-4FC9-977F-70D17B24DB03"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "swift_demo/views/examples/01_SwiftPractice.swift"
@@ -32,6 +32,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "302"
             endingLineNumber = "302"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D264F9E3-801F-43FA-86D0-A961F7A07D4D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "swift_demo/views/examples/10_&#x53ef;&#x9009;&#x94fe;&#x5f0f;&#x8c03;&#x7528;.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

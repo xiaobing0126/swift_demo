@@ -1,5 +1,5 @@
 //
-//  SwiftPractice.swift
+//  01_SwiftPractice.swift
 //  swift_demo
 //
 //  Created by 小饼子 on 2026/3/3.
@@ -13,7 +13,7 @@ import SwiftUI
 // 返回一个函数，这个函数将一个整数作为参数并返回一个整数。
 func makeIncrementer() -> ((Int) -> Int) {
     func addOne(number: Int) -> Int {
-        return number + 1
+        number + 1
     }
     return addOne
 }
@@ -29,13 +29,10 @@ func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
 }
 
 func lessThanTen(number: Int) -> Bool {
-    return number < 10
+    number < 10
 }
 
-
 /** -------------函数和闭包结束-------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-
 
 /** -------------对象和类开始-------------------------------------------------------------------------------------------------------------------------------------------------- */
 class NamedShape {
@@ -47,31 +44,30 @@ class NamedShape {
     }
 
     func simpleDescription() -> String {
-        return "A shape with \(numberOfSides) sides."
+        "A shape with \(numberOfSides) sides."
     }
 }
 
-
 class Square: NamedShape {
     var sideLength: Double
-    
+
     init(sideLength: Double, name: String) {
         self.sideLength = sideLength
         super.init(name: name)
         numberOfSides = 4
     }
-    
-    func area() ->  Double {
-        return sideLength * sideLength
+
+    func area() -> Double {
+        sideLength * sideLength
     }
 
 //    子类如果要重写父类的方法的话，需要用 override 标记——如果没有添加 override 就重写父类方法的话编译器会报错。编译器同样会检测 override 标记的方法是否确实在父类中。
     override func simpleDescription() -> String {
-        return "A square with sides of length \(sideLength)."
+        "A square with sides of length \(sideLength)."
     }
 }
-/** -------------对象和类结束-------------------------------------------------------------------------------------------------------------------------------------------------- */
 
+/** -------------对象和类结束-------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 /** -------------枚举和结构体开始-------------------------------------------------------------------------------------------------------------------------------------------- */
 enum Rank: Int {
@@ -81,15 +77,15 @@ enum Rank: Int {
     func simpleDescription() -> String {
         switch self {
         case .ace:
-            return "ace"
+            "ace"
         case .jack:
-            return "jack"
+            "jack"
         case .queen:
-            return "queen"
+            "queen"
         case .king:
-            return "king"
+            "king"
         default:
-            return String(self.rawValue)
+            String(self.rawValue)
         }
     }
 }
@@ -99,21 +95,22 @@ enum Suit: CaseIterable {
     func simpleDescription() -> String {
         switch self {
         case .spades:
-            return "♠️"
+            "♠️"
         case .hearts:
-            return "❤️"
+            "❤️"
         case .diamonds:
-            return "♦️"
+            "♦️"
         case .clubs:
-            return "♣️"
+            "♣️"
         }
     }
+
     func color() -> String {
         switch self {
         case .spades, .clubs:
-            return "black"
+            "black"
         case .hearts, .diamonds:
-            return "red"
+            "red"
         }
     }
 }
@@ -123,10 +120,9 @@ struct Card {
     var rank: Rank
     var suit: Suit
     func simpleDescription() -> String {
-        return "The struct Card {\(rank.simpleDescription()) of \(suit.simpleDescription())"
+        "The struct Card {\(rank.simpleDescription()) of \(suit.simpleDescription())"
     }
 }
-
 
 // 枚举实战
 // 使用枚举来创建一副扑克牌。每张牌都有一个花色和一个点数。使用枚举来表示花色和点数，使用结构体来表示牌。最后创建一个函数来生成一副完整的扑克牌。
@@ -135,13 +131,13 @@ enum aSuit: CaseIterable {
     func simpleDescription() -> String {
         switch self {
         case .spades:
-            return "♠️"
+            "♠️"
         case .hearts:
-            return "❤️"
+            "❤️"
         case .diamonds:
-            return "♦️"
+            "♦️"
         case .clubs:
-            return "♣️"
+            "♣️"
         }
     }
 }
@@ -150,25 +146,25 @@ enum aRank: CaseIterable {
     case ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     func simpleDescription() -> String {
         switch self {
-        case .ace: return "A"
-        case .two: return "2"
-        case .three: return "3"
-        case .four: return "4"
-        case .five: return "5"
-        case .six: return "6"
-        case .seven: return "7"
-        case .eight: return "8"
-        case .nine: return "9"
-        case .ten: return "10"
-        case .jack: return "J"
-        case .queen: return "Q"
-        case .king: return "K"
+        case .ace: "A"
+        case .two: "2"
+        case .three: "3"
+        case .four: "4"
+        case .five: "5"
+        case .six: "6"
+        case .seven: "7"
+        case .eight: "8"
+        case .nine: "9"
+        case .ten: "10"
+        case .jack: "J"
+        case .queen: "Q"
+        case .king: "K"
         }
     }
 }
 
 struct aCard {
-    var description: String  // 存 "♠️ace" 这样的组合字符串
+    var description: String // 存 "♠️ace" 这样的组合字符串
 }
 
 // 用枚举创建一副扑克牌
@@ -183,7 +179,6 @@ func createDeck() -> [aCard] {
     }
     return deck
 }
-    
 
 /** -------------枚举和结构体结束-------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -214,100 +209,92 @@ struct SimpleStructure: ExampleProtocol {
 
 /** -------------协议和扩展结束----------------------------------------------------------------------------------------------------------------------------------------------- */
 
-
 struct SwiftPracticeView: View {
     // 接收从上一个页面传过来的参数
     let id: Int
     let title: String
-    
+
     // 测试结果
     @State private var testBtnText: String = ""
     @State private var testResult: String = ""
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Text("练习页面")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            
+
             Text("ID: \(id)")
                 .font(.title2)
                 .foregroundStyle(.blue)
-            
+
             Text("标题: \(title)")
                 .font(.title3)
                 .foregroundStyle(.secondary)
-            
+
             Text("当前测试：\(testBtnText)")
             Text(testResult)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
-            
+
             /** 测试功能-------------------------------------------------------------------------------------------------------------------------------------------------------- */
             // 测试协议和扩展
             Button {
-                
                 // 验证 SimpleClass 是否正确遵循了 ExampleProtocol 协议，并且 adjust() 方法是否正确修改了 simpleDescription 属性
                 let a = SimpleClass()
 //                a.adjust()
                 testResult = a.simpleDescription
-                
+
                 Task {
                     // 延迟 5 秒（单位：纳秒，5_000_000_000 纳秒 = 5 秒）
                     try? await Task.sleep(nanoseconds: 5_000_000_000)
                     // 注意：这里可能不在主线程，如果需要更新 UI，要切换到主 actor
                     await MainActor.run {
                         print("5 秒后执行，主线程")
-                                        a.adjust()
-                                        testResult = a.simpleDescription
+                        a.adjust()
+                        testResult = a.simpleDescription
                     }
                 }
-    
+
             } label: {
                 Text("测试协议和扩展")
             }
-            
-            
-            
-            
+
             // 测试验证扑克牌
             Button {
-                
                 // 验证 createDeck 函数是否正确生成了 52 张牌，并且每张牌的 description 格式正确
                 let arr = createDeck()
                 // ✅ map 取出每张牌的 description，再用 joined 拼成一个字符串
-                let deckArr = arr.map({
+                let deckArr = arr.map {
                     aCard in
-                    return aCard.description
-                })
+                    aCard.description
+                }
                 let deckStr = deckArr.joined(separator: "  ")
                 print(deckStr)
                 testResult = deckStr
-                
+
             } label: {
                 Text("扑克牌")
             }
-            
-            
+
             // 测试枚举和结构体
             Button {
-                
                 // 验证 createDeck 函数是否正确生成了 52 张牌，并且每张牌的 description 格式正确
                 let arr = createDeck()
                 // ✅ map 取出每张牌的 description，再用 joined 拼成一个字符串
-                let deckArr = arr.map({
+                let deckArr = arr.map {
                     aCard in
-                    return aCard.description
-                })
+                    aCard.description
+                }
                 let deckStr = deckArr.joined(separator: "  ")
                 print(deckStr)
-                
+
                 testBtnText = "枚举和结构体"
                 let ace = Rank.jack
                 let aceRawValue = ace.rawValue
                 let hearts = Suit.hearts
                 let heartsDescription = hearts.simpleDescription()
-                
+
                 let threeOfSpades = Card(rank: .three, suit: .spades)
                 let threeOfSpadesDescription = threeOfSpades.simpleDescription()
                 testResult = """
@@ -321,36 +308,34 @@ struct SwiftPracticeView: View {
             } label: {
                 Text("枚举和结构体")
             }
-            
-            
+
             // 测试函数和闭包
             Button {
-                
-                let arrs = [1,2,3,4]
+                let arrs = [1, 2, 3, 4]
                 // ✅ 完整写法（指定参数类型和返回类型）
-                let res = arrs.map({ (item: Int) -> Int in
+                let res = arrs.map { (item: Int) -> Int in
                     return item * 3
-                })
+                }
 
                 // ✅ 省略类型（Swift 可自动推断）
-                let res1 = arrs.map({ item in
-                    return item * 3
-                })
+                let res1 = arrs.map { item in
+                    item * 3
+                }
                 print(res)
                 print(res1)
-                
+
                 testBtnText = "测试函数和闭包"
                 // 测试函数当作参数
 //                let increment = makeIncrementer()
 //                testResult = "\(increment(7))"
-                
+
                 // 测试函数当作参数
                 let numbers = [1, 2, 4, 8, 16]
                 testResult = hasAnyMatches(list: numbers, condition: lessThanTen) ? "有小于10的数" : "没有小于10的数"
             } label: {
                 Text("测试函数和闭包")
             }
-            
+
             // 测试对象和类
             Button {
                 testBtnText = "测试对象和类"
@@ -364,7 +349,7 @@ struct SwiftPracticeView: View {
             } label: {
                 Text("测试对象和类")
             }
-            
+
             Spacer()
         }
         .padding()

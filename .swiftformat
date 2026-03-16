@@ -1,0 +1,44 @@
+# SwiftFormat 配置文件
+# 文档: https://github.com/nicklockwood/SwiftFormat
+
+# Swift 版本
+--swiftversion 5.9
+
+# 缩进设置
+--indent 4          # 使用 4 个空格缩进
+--indentcase false  # switch 的 case 不额外缩进
+--tabwidth 4
+
+# 换行
+--maxwidth 120       # 每行最大 120 个字符
+--linebreaks lf      # 使用 Unix 换行符
+
+# 括号
+--allman false       # 花括号不另起一行 (K&R 风格)
+--elseposition same-line  # else 和 } 在同一行
+
+# 空格
+--trimwhitespace always        # 去掉行尾空格
+--emptybraces no-space         # 空花括号内无空格
+--operatorfunc spaced          # 运算符函数有空格
+--ranges no-space              # Range 运算符无空格
+
+# import 排序
+--importgrouping testable-bottom  # @testable import 排到底部
+
+# 自我引用
+--self init-only     # 只在 init 里强制写 self
+
+# 注释
+--header ignore      # 忽略文件头注释（不自动修改）
+
+# 启用的规则
+--enable isEmpty                  # 用 .isEmpty 替代 == ""
+--enable blankLinesBetweenScopes  # 作用域之间加空行
+--enable redundantReturn          # 移除不必要的 return
+--enable trailingCommas           # 集合末尾加逗号
+
+# 禁用的规则
+--disable redundantSelf           # 不强制移除 self
+--disable organizeDeclarations    # 不自动整理声明顺序
+--disable extensionAccessControl  # 不修改 extension 的访问控制
