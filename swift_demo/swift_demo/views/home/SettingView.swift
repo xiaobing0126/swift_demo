@@ -28,6 +28,10 @@ struct SettingView: View {
         static func == (lhs: PracticeItem, rhs: PracticeItem) -> Bool { lhs.id == rhs.id }
         func hash(into hasher: inout Hasher) { hasher.combine(id) }
     }
+    
+    @State private var uilist: [PracticeItem] = [
+        PracticeItem(id: 1, name: "swift组件",    destination: { AnyView(SwiftUIComponentView()) }),
+    ]
 
     @State private var lists: [PracticeItem] = [
         PracticeItem(id: 1, name: "swift初见",    destination: { AnyView(SwiftPracticeView(id: 1, title: "swift初见")) }),
@@ -40,6 +44,10 @@ struct SettingView: View {
         PracticeItem(id: 8, name: "swift继承", destination: { AnyView(SwiftInheritanceView()) }),
         PracticeItem(id: 9, name: "swift可选链式调用", destination: { AnyView(SwiftOptionalChainingView()) }),
         PracticeItem(id: 10, name: "swift错误处理", destination: { AnyView(SwiftErrorHandleView()) }),
+        PracticeItem(id: 11, name: "swift类型转换", destination: { AnyView(SwiftTypeConversionView()) }),
+        PracticeItem(id: 12, name: "swift嵌套类型", destination:  { AnyView(SwiftNestedTypeView()) }),
+        PracticeItem(id: 13, name: "swift扩展", destination:  { AnyView(SwiftExtensionView()) }),
+        PracticeItem(id: 14, name: "swift协议", destination:  { AnyView(SwiftProtocolView()) })
     ]
 
     // ✅ 用 @State 控制跳转目标（存储选中的 item）
@@ -47,9 +55,26 @@ struct SettingView: View {
 
     var body: some View {
         List {
+            Section("UI组件") {
+                ForEach(uilist) { item in
+                    Button(action: {
+                        print("点击了 \(item.name), id = \(item.id)")
+                        selectedItem = item
+                    }, label: {
+                        //水平布局，左边是文本，右边是箭头
+                        HStack {
+                            Text(item.name)
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.secondary)
+                        }
+                    })
+                }
+            }
+            
             Section("练习菜单") {
                 ForEach(lists) { item in
-                    // ✅ 用 Button，在 action 里执行逻辑后触发跳转
                     Button(action: {
                         print("点击了 \(item.name), id = \(item.id)")
                         selectedItem = item
@@ -64,13 +89,7 @@ struct SettingView: View {
                     })
                 }
             }
-        }
-        // ✅ 直接调用 item.destination()，无需任何 if else
-        .navigationDestination(item: $selectedItem, destination: { item in
-            item.destination()
-        })
 
-        List {
             // 用户信息区域
             Section {
                 HStack(spacing: 15) {
@@ -118,6 +137,10 @@ struct SettingView: View {
         }
         .navigationTitle("主页")
         .navigationBarBackButtonHidden(true)
+        // ✅ 直接调用 item.destination()，无需任何 if else
+        .navigationDestination(item: $selectedItem, destination: { item in
+            item.destination()
+        })
     }
 
     // 根据菜单项返回对应图标
