@@ -30,7 +30,18 @@ struct SettingView: View {
     }
     
     @State private var uilist: [PracticeItem] = [
-        PracticeItem(id: 1, name: "swift组件",    destination: { AnyView(SwiftUIComponentView()) }),
+        PracticeItem(id: 101, name: "01_视图和控件", destination: { AnyView(SwiftUIComponentView()) }),
+        PracticeItem(id: 102, name: "02_文本视图", destination: { AnyView(SwiftTextView()) }),
+        PracticeItem(id: 103, name: "03_图像视图", destination: { AnyView(SwiftImageView()) }),
+        PracticeItem(id: 104, name: "04_形状视图", destination: { AnyView(SwiftShapeView()) }),
+        PracticeItem(id: 105, name: "05_动画", destination: { AnyView(SwiftAnimationView()) }),
+        PracticeItem(id: 106, name: "06_视图布局", destination: { AnyView(SwiftLayoutView()) }),
+        PracticeItem(id: 107, name: "07_视图间距", destination: { AnyView(SwiftSpacerView()) }),
+        PracticeItem(id: 108, name: "08_视图填充", destination: { AnyView(SwiftPaddingView()) }),
+        PracticeItem(id: 109, name: "09_控件", destination: { AnyView(SwiftComponentView()) }),
+        PracticeItem(id: 110, name: "10_水平垂直布局", destination: { AnyView(ZStackView()) }),
+        PracticeItem(id: 111, name: "11_列表", destination: { AnyView(SwiftListView()) }),
+        PracticeItem(id: 112, name: "12_事件处理", destination: { AnyView(SwiftEventView()) })
     ]
 
     @State private var lists: [PracticeItem] = [
